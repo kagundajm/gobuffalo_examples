@@ -1,0 +1,28 @@
+<div class="col-md-8 offset-md-2 tile">
+<ul class="list-unstyled list-inline">
+      <li><a href="/select-tags/new" class="btn btn-primary">New Product</a></li>
+    </ul>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <th width="30%">Category</th>
+    <th width="35%">Name</th>
+    <th width="20%" class="num">Price</th>
+    <th width="15%">Action</th>
+  </thead>
+  <tbody>
+    <%= for (p) in products { %>
+      <tr>
+        <td><%= p.CategoryName %></td>
+        <td><%= p.Name %></td>
+        <td class="num"><%= format( p.Price)  %></td>
+        <td>
+          <div>
+            <a href="/select-tags/<%= p.ID %>/edit/" title="Edit product" ><i class="fa fa-edit fa-lg text-warning" ></i></a>
+          </div>
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
+</div>

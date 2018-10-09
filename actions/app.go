@@ -49,6 +49,11 @@ func App() *buffalo.App {
 
 		app.GET("/", HomeHandler)
 
+		app.GET("/select-tags", ListProducts)
+		app.GET("/select-tags/new", NewProduct)
+		app.GET("/select-tags/{product_id}/edit", EditProduct)
+		app.POST("/select-tags", SaveProduct)
+		app.PUT("/select-tags/{product_id}", UpdateProduct)
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 

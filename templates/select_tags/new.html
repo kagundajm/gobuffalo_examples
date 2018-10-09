@@ -1,0 +1,11 @@
+<div class="col-md-4 offset-md-4 tile">
+  <div class="page-header">
+    <h4 class="tile-title">New Product</h4>
+  </div>
+  <fieldset class="box">
+  <%= form_for(product, {action: "/select-tags" , method: "POST"}) { %>
+    <%= partial("select_tags/form.html") %>
+    <a href="/select-tags" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
+  <% } %>
+</fieldset>
+</div>

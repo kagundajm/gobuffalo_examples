@@ -1,0 +1,37 @@
+create_table("categories") {
+	t.Column("id", "uuid", {"primary": true})
+	t.Column("name", "string", {size:50})
+  t.DisableTimestamps()
+}
+add_index("categories", "name", {name:"uq_category_name", unique:true})
+
+
+create_table("products") {
+	t.Column("id", "uuid", {"primary": true})
+	t.Column("name", "string", {size:50})
+	t.Column("category_id", "uuid", {})
+	t.Column("price", "int", {})
+  t.foreign_key("category_id", {"categories":["id"]}, {name:"fk_product_to_category"})
+}
+add_index("products", "name", {name:"uq_product_name", unique:true})
+
+
+raw("INSERT INTO categories (id, name) VALUES 
+  ('2099bed5-a6ab-4c8f-979d-09e5398e0839','Building Materials'),
+  ('3021bdaf-7b7f-4bbe-ab00-a8a91efe2033','Equiment Hire'),
+  ('e3f69c42-8da9-41d6-93f3-8c07bf1bb76a','Bakery Products'),
+  ('2b46938c-43c0-4238-81a5-afeb466564e6','Fasteners');")
+
+raw("INSERT INTO products (id, category_id, name, price, created_at, updated_at ) VALUES
+('e044b8d4-e731-4bd3-ba4e-253bdfa77124','2099bed5-a6ab-4c8f-979d-09e5398e0839','Bricks',25, current_timestamp, current_timestamp),
+('201904c6-31ed-4f0c-9f0b-2be408e9a8ac','2099bed5-a6ab-4c8f-979d-09e5398e0839','Doors',150, current_timestamp, current_timestamp),
+
+('d6e6448b-b23d-467a-b4fe-58ac66738c38','3021bdaf-7b7f-4bbe-ab00-a8a91efe2033','Excavator',2500, current_timestamp, current_timestamp),
+('5c88f694-4b13-4530-9333-2d0708b45934','3021bdaf-7b7f-4bbe-ab00-a8a91efe2033','Cranes',1500, current_timestamp, current_timestamp),
+('36a24f10-cc7b-4ba8-aeac-067b1dbd3c99','3021bdaf-7b7f-4bbe-ab00-a8a91efe2033','Tractors',2000, current_timestamp, current_timestamp),
+
+('a8733e90-7c59-47a0-8588-351b88d2cfb8','e3f69c42-8da9-41d6-93f3-8c07bf1bb76a','Breads', 55, current_timestamp, current_timestamp ),
+('f3bc9d8d-a69e-41c4-afef-b0b57d0fe59b','e3f69c42-8da9-41d6-93f3-8c07bf1bb76a','Cakes', 20, current_timestamp, current_timestamp ),
+
+('110fe403-c3c3-42a2-bdb2-e2928743dc0c','2b46938c-43c0-4238-81a5-afeb466564e6','Tech Screws', 4, current_timestamp, current_timestamp),
+('b0480dae-b70a-4edf-ac53-71bcca1fdb31','2b46938c-43c0-4238-81a5-afeb466564e6','Hex Cap Screws',7, current_timestamp, current_timestamp);")

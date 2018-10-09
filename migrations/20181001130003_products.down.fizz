@@ -1,0 +1,6 @@
+
+drop_foreign_key("products", "fk_product_to_category", {"if_exists":true})
+
+drop_table("products")
+
+drop_table("categories")

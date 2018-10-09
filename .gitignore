@@ -12,3 +12,4 @@ gobuffalo_examples
 .vscode/
 .grifter/
 .env
+*.DS_Store
