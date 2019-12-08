@@ -1,5 +1,11 @@
 <%= f.InputTag("Name", {"required": nil, "minlength":5}) %>
-<%= f.SelectTag("CategoryID", {"label": "Category", options: categories, value: product.CategoryID,"allow_blank": true,"required":nil }) %>
+<%= f.SelectTag("CategoryID", {
+    "label": "Category",
+    options: categories,
+    value: product.CategoryID,
+    "allow_blank": true,
+    "required":nil
+}) %>
 <%= f.InputTag("Price", {"required": nil, "type":"number"}) %>
 
 <button class="btn btn-success " role="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save</button>

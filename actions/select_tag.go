@@ -56,14 +56,14 @@ func EditProduct(c buffalo.Context) error {
 		return errors.WithStack(errors.New(txError))
 	}
 
-	categories := models.Categories{}
-	if err := tx.Order("name").All(&categories); err != nil {
-		return errors.WithStack(err)
-	}
-
 	product := &models.Product{}
 	if err := tx.Find(product, c.Param("product_id")); err != nil {
 		return c.Error(404, err)
+	}
+
+	categories := models.Categories{}
+	if err := tx.Order("name").All(&categories); err != nil {
+		return errors.WithStack(err)
 	}
 
 	c.Set("sub-title", subTitle)
